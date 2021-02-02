@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+cors = require("cors");
+app.use(cors());
+
 // Add the middleware code needed to accept incoming data and add it to req.body
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
