@@ -55,12 +55,10 @@ router.post("/", async (req, res) => {
 
 // Write the route to update a cookbook
 router.put("/:id", async (req, res) => {
-  const updateCookbook = await cookbookModel.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
-  res.json({ status: 200, data: updateCookbook });
+  cookbookModel
+    .findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((cookbook) => res.json({ status: 200, data: cookbook }))
+    .catch((err) => res.json({ status: 400, err: err }));
 });
 
 // Write the route to delete the cookbook by title
